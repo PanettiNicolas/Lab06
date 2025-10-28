@@ -2,6 +2,7 @@ from database.DB_connect import get_connection
 from model.automobile import Automobile
 from model.noleggio import Noleggio
 
+
 '''
     MODELLO: 
     - Rappresenta la struttura dati
@@ -35,8 +36,15 @@ class Autonoleggio:
             Funzione che legge tutte le automobili nel database
             :return: una lista con tutte le automobili presenti oppure None
         """
+        cursor = self.cnx.cursor(dictionary=True)
+        query =  """SELECT * FROM automobile"""
+        cursor.execute(query)
+        risultato = []
 
-        # TODO
+        ...
+
+        for row in cursor:
+            risultato.append()
 
     def cerca_automobili_per_modello(self, modello) -> list[Automobile] | None:
         """
