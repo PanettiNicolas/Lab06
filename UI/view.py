@@ -43,8 +43,7 @@ class View:
         self.txt_responsabile = ft.Text(
             value=f"Responsabile: {self.controller.get_responsabile()}",
             size=16,
-            weight=ft.FontWeight.BOLD
-        )
+            weight=ft.FontWeight.BOLD)
 
         # TextField per responsabile
         self.input_responsabile = ft.TextField(value=self.controller.get_responsabile(), label="Responsabile")
@@ -64,9 +63,9 @@ class View:
 
         # Altri Pulsanti da implementare (es. "Mostra" e "Cerca")
 
-        pulsante_mostra_automobili = ft.ElevatedButton(text="Mostra", on_click=)
+        pulsante_mostra_automobili = ft.ElevatedButton(text="Mostra", on_click=self.controller.mostra_automobili)
 
-        pulsante_cerca_automobili = ft.ElevatedButton(text="Cerca", on_click=)
+        pulsante_cerca_automobili = ft.ElevatedButton(text="Cerca", on_click=self.controller.mostra_automobili_per_modello)
 
         # --- LAYOUT ---
         self.page.add(
@@ -79,16 +78,23 @@ class View:
 
             # Sezione 2
             ft.Text("Modifica Informazioni", size=20),
-            ft.Row(spacing=200,
+            ft.Row(spacing=100,
                    controls=[self.input_responsabile, pulsante_conferma_responsabile],
                    alignment=ft.MainAxisAlignment.CENTER),
             ft.Divider(),
 
             # Sezione 3
-
+            ft.Text("Automobili", size=20),
+            pulsante_mostra_automobili,
+            self.lista_auto,
+            ft.Divider(),
 
             # Sezione 4
-            # TODO
+            ft.Text("Automobili per modello", size=20),
+            ft.Row(spacing=100,
+                   controls = [self.input_modello_auto, pulsante_cerca_automobili],
+                   alignment=ft.MainAxisAlignment.CENTER),
+            self.lista_auto_ricerca,
         )
 
     def cambia_tema(self, e):
